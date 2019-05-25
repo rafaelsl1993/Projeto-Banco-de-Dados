@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<!--
+    Marcelo, colocar as informações das views aqui.
+    Na pasta Shared tem a estrutura de todas as view lá, todas as informações q vc colocar aqui neste
+    documento Index.cshtml ira ser jogado na linha  32 do documento Layout.cshtml na anotacao RenderBody.
+
+    Aqui vc vai colocar os botoes que chamaram os metodos presentes no homecontroller, para isso
+    no formulario razor fazer o seguinte:
+    using (Html.BeginForm(metodo do controller, nome do controler sem o termo Controller, Forma de envio))
+    tudo q for participar do formulario devera ter anotacoes da div class = "form-group"
+
+    abaixo um exemplo de como chamar um metodo usando razor
+    -->
+
+
+<!--exemplo de formulario
+@using (Html.BeginForm("Insert_Mongo", "Home", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.titulo,
+                htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.titulo)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.autor,
+              htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.autor)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.conteudo,
+              htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.conteudo)
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Adicionar" class="btn btn-primary" />
+    </div>
+    -->
+
+}
