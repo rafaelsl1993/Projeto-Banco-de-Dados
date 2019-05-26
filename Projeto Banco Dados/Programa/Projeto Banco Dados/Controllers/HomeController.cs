@@ -59,6 +59,7 @@ namespace Projeto_Banco_Dados.Controllers
         }
         public ActionResult Insert_Mongo()
         {
+            clienteRepository = new ClienteRepository();
             //Exemplo de insert comum no mongo
              Cliente c = new Cliente(){
              documento = "123456",
@@ -68,7 +69,7 @@ namespace Projeto_Banco_Dados.Controllers
              telefone = "44252525"
              };
             clienteRepository.Insert(c);
-            return View();
+            return RedirectToAction("Index");
         }
         public ActionResult Delete_Mongo()
         {

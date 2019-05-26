@@ -15,27 +15,12 @@
     -->
 
 
-<!--exemplo de formulario
+<!--exemplo de formulario -->
 @using (Html.BeginForm("Insert_Mongo", "Home", FormMethod.Post))
 {
     <div class="form-group">
-        @Html.LabelFor(model => model.titulo,
-                htmlAttributes: new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.titulo)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.autor,
-              htmlAttributes: new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.autor)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.conteudo,
-              htmlAttributes: new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.conteudo)
-    </div>
-    <div class="form-group">
         <input type="submit" value="Adicionar" class="btn btn-primary" />
     </div>
-    -->
+    
 
 }
