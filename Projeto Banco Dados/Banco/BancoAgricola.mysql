@@ -1,0 +1,235 @@
+-- MySQL dump 10.13  Distrib 8.0.5, for Win64 (x86_64)
+--
+-- Host: localhost    Database: agricultura
+-- ------------------------------------------------------
+-- Server version	8.0.16
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+ SET NAMES utf8 ;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `agricultura`
+--
+
+/*!40000 DROP DATABASE IF EXISTS `agricultura`*/;
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `agricultura` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `agricultura`;
+
+--
+-- Table structure for table `cliente`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `cliente` (
+  `documento` varchar(255) NOT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  `endereco` varchar(255) DEFAULT NULL,
+  `telefone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`documento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cliente`
+--
+
+/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+
+--
+-- Table structure for table `compras`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `compras` (
+  `id_compra` int(6) NOT NULL,
+  `tipo_produto` varchar(255) NOT NULL,
+  `valor` double(8,2) DEFAULT NULL,
+  `data_compra` date DEFAULT NULL,
+  `documento_fornecedor` varchar(255) NOT NULL,
+  `quantidade` int(6) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_compra`),
+  KEY `fk_tipo_produto` (`tipo_produto`),
+  KEY `fk_documento_fornecedor` (`documento_fornecedor`),
+  CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`tipo_produto`) REFERENCES `estoque_compras` (`tipo_produto`),
+  CONSTRAINT `compras_ibfk_2` FOREIGN KEY (`documento_fornecedor`) REFERENCES `fornecedor` (`documento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `compras`
+--
+
+/*!40000 ALTER TABLE `compras` DISABLE KEYS */;
+/*!40000 ALTER TABLE `compras` ENABLE KEYS */;
+
+--
+-- Table structure for table `estoque_compras`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `estoque_compras` (
+  `tipo_produto` varchar(255) NOT NULL,
+  `quantidade_estoque` int(6) DEFAULT NULL,
+  `medida` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`tipo_produto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estoque_compras`
+--
+
+/*!40000 ALTER TABLE `estoque_compras` DISABLE KEYS */;
+/*!40000 ALTER TABLE `estoque_compras` ENABLE KEYS */;
+
+--
+-- Table structure for table `estoque_vendas`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `estoque_vendas` (
+  `tipo_plantio` varchar(255) NOT NULL,
+  `quantidade_total` int(6) DEFAULT NULL,
+  PRIMARY KEY (`tipo_plantio`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estoque_vendas`
+--
+
+/*!40000 ALTER TABLE `estoque_vendas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `estoque_vendas` ENABLE KEYS */;
+
+--
+-- Table structure for table `fornecedor`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `fornecedor` (
+  `documento` varchar(255) NOT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  `endereco` varchar(255) DEFAULT NULL,
+  `telefone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`documento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fornecedor`
+--
+
+/*!40000 ALTER TABLE `fornecedor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fornecedor` ENABLE KEYS */;
+
+--
+-- Table structure for table `gastos`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `gastos` (
+  `id_gastos` int(6) NOT NULL,
+  `id_plantio` int(6) NOT NULL,
+  `tipo_produto` varchar(255) NOT NULL,
+  `quantidade` int(6) DEFAULT NULL,
+  PRIMARY KEY (`id_gastos`),
+  KEY `fk_id_plantio` (`id_plantio`),
+  KEY `fk_tipo_produto` (`tipo_produto`),
+  CONSTRAINT `gastos_ibfk_1` FOREIGN KEY (`id_plantio`) REFERENCES `producao` (`id_plantio`),
+  CONSTRAINT `gastos_ibfk_2` FOREIGN KEY (`tipo_produto`) REFERENCES `estoque_compras` (`tipo_produto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gastos`
+--
+
+/*!40000 ALTER TABLE `gastos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gastos` ENABLE KEYS */;
+
+--
+-- Table structure for table `producao`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `producao` (
+  `id_plantio` int(6) NOT NULL,
+  `tipo_plantio` varchar(255) NOT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `hectares` varchar(255) DEFAULT NULL,
+  `quantidades` int(6) DEFAULT NULL,
+  `data_inicio` date DEFAULT NULL,
+  `data_previstoFim` date DEFAULT NULL,
+  PRIMARY KEY (`id_plantio`),
+  KEY `fk_tipo_plantio` (`tipo_plantio`),
+  CONSTRAINT `producao_ibfk_1` FOREIGN KEY (`tipo_plantio`) REFERENCES `estoque_vendas` (`tipo_plantio`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `producao`
+--
+
+/*!40000 ALTER TABLE `producao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `producao` ENABLE KEYS */;
+
+--
+-- Table structure for table `vendas`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `vendas` (
+  `id_venda` int(6) NOT NULL,
+  `tipo_plantio` varchar(255) NOT NULL,
+  `documento_cliente` varchar(255) NOT NULL,
+  `status_vendas` varchar(255) DEFAULT NULL,
+  `data_venda` date DEFAULT NULL,
+  `valor_venda` double(8,2) DEFAULT NULL,
+  `quantidade_venda` int(6) DEFAULT NULL,
+  PRIMARY KEY (`id_venda`),
+  KEY `fk_documento_cliente` (`documento_cliente`),
+  KEY `fk_tipo_plantio` (`tipo_plantio`),
+  CONSTRAINT `vendas_ibfk_1` FOREIGN KEY (`documento_cliente`) REFERENCES `cliente` (`documento`),
+  CONSTRAINT `vendas_ibfk_2` FOREIGN KEY (`tipo_plantio`) REFERENCES `estoque_vendas` (`tipo_plantio`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vendas`
+--
+
+/*!40000 ALTER TABLE `vendas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vendas` ENABLE KEYS */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-05-26 14:39:32
