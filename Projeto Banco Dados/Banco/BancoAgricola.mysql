@@ -57,7 +57,7 @@ CREATE TABLE `cliente` (
 CREATE TABLE `compras` (
   `id_compra` int(6) NOT NULL,
   `tipo_produto` varchar(255) NOT NULL,
-  `valor` double(8,2) DEFAULT NULL,
+  `valor` float DEFAULT NULL,
   `data_compra` date DEFAULT NULL,
   `documento_fornecedor` varchar(255) NOT NULL,
   `quantidade` int(6) DEFAULT NULL,
@@ -206,7 +206,7 @@ CREATE TABLE `vendas` (
   `documento_cliente` varchar(255) NOT NULL,
   `status_vendas` varchar(255) DEFAULT NULL,
   `data_venda` date DEFAULT NULL,
-  `valor_venda` double(8,2) DEFAULT NULL,
+  `valor_venda` float DEFAULT NULL,
   `quantidade_venda` int(6) DEFAULT NULL,
   PRIMARY KEY (`id_venda`),
   KEY `fk_documento_cliente` (`documento_cliente`),
