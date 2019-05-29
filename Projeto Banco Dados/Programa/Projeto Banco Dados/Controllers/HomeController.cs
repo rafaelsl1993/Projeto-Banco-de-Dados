@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MySql.Data.MySqlClient;
 
 namespace Projeto_Banco_Dados.Controllers
 {
@@ -47,10 +48,21 @@ namespace Projeto_Banco_Dados.Controllers
 
         #region Acoes_BancoEstruturado
         //Rafael coloque as acoes do banco SQL aqui!
-        #endregion
-        #region acoes_Mongo
-        //Area do controller que chama classe repository para acesso as dmls do mongodb
-        public ActionResult Select_Mongo()
+        public void sqlCommand() {
+            MySqlConnection conexaoSQL = new MySqlConnection("server=localhost;User Id=root;database=agricultura; password=SENHA_AQUI");
+            MySqlCommand comandoSQL = new MySqlCommand("QUERY_AQUI", conexaoSQL);
+
+            conexaoSQL.Open();
+
+            comandoSQL.ExecuteReader();
+
+            conexaoSQL.Close();
+        }
+
+#endregion
+#region acoes_Mongo
+//Area do controller que chama classe repository para acesso as dmls do mongodb
+public ActionResult Select_Mongo()
         {
             //Exemplo de select comum no mongo
             string documento = "123456";
