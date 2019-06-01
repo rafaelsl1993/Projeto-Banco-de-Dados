@@ -130,13 +130,28 @@ namespace Projeto_Banco_Dados.Controllers
             }
             return true;
         }
+
+        private bool GravaArquivoMongoDB(string[] conteudo)
+        {
+            try
+            {
+                string path = @"C:\Users\alexa\Desktop\logs\arquivo_consulta_mongo.txt";
+                System.IO.File.WriteAllLines(path, conteudo, Encoding.UTF8);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+            return true;
+        }
         private List<BsonDocument> Select_monstro()
         {
             var colecaoVendas = vendasRepository.InstanciarConexao();
             var gte = new BsonDocument { { "$gte", new BsonDocument { { "valor", "500" } } } };
-            
-            var result = colecaoVendas.Aggregate().Match(gte).Group(new BsonDocument { {"data_venda", } });
-            
+
+            var result = colecaoVendas.Aggregate().Match(gte);//.Group(new BsonDocument { {"data_venda",  } });
+
             return null;
         }
     }
