@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using Projeto_Banco_Dados.Models;
 using System;
 using System.Collections.Generic;
@@ -69,7 +70,7 @@ namespace Projeto_Banco_Dados.Repository
             }
             return false;
         }
-        public List<Cliente> Select(String doc)
+        public List<Cliente> Select(string doc)
         {
             var colecao = this.InstanciarConexao();
             var filtro = Builders<Cliente>.Filter.Where(x => x.documento == doc);

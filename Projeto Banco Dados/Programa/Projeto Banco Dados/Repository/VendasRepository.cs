@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using Projeto_Banco_Dados.Models;
 using System;
 using System.Collections.Generic;
@@ -69,11 +70,30 @@ namespace Projeto_Banco_Dados.Repository
             }
             return false;
         }
-        public List<Vendas> Select(int doc)
+
+        private IMongoCollection<Cliente> InstanciarConexaoCliente()
+        {
+            try
+            {
+                var client = new MongoClient("mongodb://localhost:27017");
+                var database = client.GetDatabase("Banco_Mongo");
+                var colecao = database.GetCollection<Cliente>("Cliente");
+                Console.WriteLine("Aplicação rodando.");
+                return colecao;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Erro: {e.Message}");
+                return null;
+            }
+        }
+        public List<Vendas> Select()
         {
             var colecao = this.InstanciarConexao();
-            var filtro = Builders<Vendas>.Filter.Where(x => x.id_venda == doc);
-            var lista = colecao.Find(filtro).ToList();
+            var colecao2 = this.InstanciarConexaoCliente(); 
+           
+
             return lista;
         }
     }

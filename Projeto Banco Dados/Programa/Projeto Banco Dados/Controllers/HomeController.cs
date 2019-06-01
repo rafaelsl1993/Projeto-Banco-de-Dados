@@ -50,18 +50,36 @@ namespace Projeto_Banco_Dados.Controllers
         #endregion
         #region acoes_Mongo
         //Area do controller que chama classe repository para acesso as dmls do mongodb
-        public ActionResult Select_Mongo()
+        public ActionResult Select_Mongo1()
         {
+            vendasRepository = new VendasRepository();
+            ComprasRepository = new ComprasRepository();
+            var lista = vendasRepository.Select();
+            var listafinal = 
+            /*
+            clienteRepository = new ClienteRepository();
             //Exemplo de select comum no mongo
             string documento = "123456";
             var lista = clienteRepository.Select(documento);
-            return View(lista);
+            lista.ForEach(u => Console.WriteLine(u));
+            */
+            return RedirectToAction("Index");
+        }
+        public ActionResult Select_Mongo2()
+        {
+            clienteRepository = new ClienteRepository();
+            //Exemplo de select comum no mongo
+            string documento = "123456";
+            var lista = clienteRepository.Select(documento);
+            lista.ForEach(u => Console.WriteLine(u));
+            return RedirectToAction("Index");
         }
         public ActionResult Insert_Mongo()
         {
             clienteRepository = new ClienteRepository();
+            //string x = "123456";
             //Exemplo de insert comum no mongo
-             Cliente c = new Cliente(){
+            Cliente c = new Cliente() {
              documento = "123456",
              email = "teste@teste.com",
              endereco = "av humberto alencar castelo branco",
@@ -71,35 +89,7 @@ namespace Projeto_Banco_Dados.Controllers
             clienteRepository.Insert(c);
             return RedirectToAction("Index");
         }
-        public ActionResult Delete_Mongo()
-        {
-            //Exemplo de delete comum no mongo
-            Cliente c = new Cliente()
-            {
-                documento = "123456",
-                email = "teste@teste.com",
-                endereco = "av humberto alencar castelo branco",
-                nome = "Marcelo Donato",
-                telefone = "44252525"
-            };
-            clienteRepository.Delete(c);
-            return View();
-        }
-        public ActionResult Update_Mongo()
-        {
-            //Exemplo de update comum no mongo
-            Cliente c = new Cliente()
-            {
-                documento = "123456",
-                email = "teste@teste.com",
-                endereco = "av humberto alencar castelo branco",
-                nome = "Marcelo Donato",
-                telefone = "44252525"
-            };
-            string filtro = "987654";
-            clienteRepository.Update(filtro,c);
-            return View();
-        }
+        
         #endregion
     }
 }
