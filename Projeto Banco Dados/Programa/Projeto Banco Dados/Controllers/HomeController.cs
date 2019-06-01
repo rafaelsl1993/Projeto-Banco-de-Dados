@@ -48,18 +48,23 @@ namespace Projeto_Banco_Dados.Controllers
 
         #region Acoes_BancoEstruturado
         //Rafael coloque as acoes do banco SQL aqui!
-        public void sqlCommand() {
-            var query = "select cliente.nome, cliente.telefone, vendas.tipo_plantio, vendas.valor_venda, " +
+        public ActionResult Select_MySQL() {
+            var query = " use agricultura; select cliente.nome, cliente.telefone, vendas.tipo_plantio, vendas.valor_venda, " +
                 "vendas.quantidade_venda, vendas.data_venda from cliente inner join vendas on " +
                 "cliente.documento = vendas.documento_cliente where vendas.valor_venda > 500 order by vendas.data_venda desc";
-            MySqlConnection conexaoSQL = new MySqlConnection("server=localhost;User Id=root;database=agricultura; password=SENHA_AQUI");
+            MySqlConnection conexaoSQL = new MySqlConnection("server=localhost;User Id=root;database=agricultura; password=NAO ESQUECE A SENHA IGOR!");
             MySqlCommand comandoSQL = new MySqlCommand(query, conexaoSQL);
 
+            MySqlDataReader myReader; //cursor
             conexaoSQL.Open();
-
-            comandoSQL.ExecuteReader();
-
+            myReader = comandoSQL.ExecuteReader();
+            string c;
+            while (myReader.Read())
+            {
+                c = myReader.GetString(1);
+            }
             conexaoSQL.Close();
+            return RedirectToAction("Index");
         }
 
 #endregion
@@ -69,8 +74,8 @@ public ActionResult Select_Mongo()
         {
             vendasRepository = new VendasRepository();
             ComprasRepository = new ComprasRepository();
-            var lista = vendasRepository.Select();
-            var listafinal = 
+            //var lista = vendasRepository.Select();
+             
             /*
             clienteRepository = new ClienteRepository();
             //Exemplo de select comum no mongo

@@ -475,3 +475,7 @@ C:\Users\rafael\Desktop\Projeto SALAH\Projeto Banco Dados\Programa\Projeto Banco
 C:\Users\rafael\Desktop\Projeto SALAH\Projeto Banco Dados\Programa\Projeto Banco Dados\bin\Google.Protobuf.dll
 C:\Users\rafael\Desktop\Projeto SALAH\Projeto Banco Dados\Programa\Projeto Banco Dados\bin\BouncyCastle.Crypto.dll
 C:\Users\rafael\Desktop\Projeto SALAH\Projeto Banco Dados\Programa\Projeto Banco Dados\bin\MySql.Data.xml
+C:\Users\alexa\Desktop\Banco de dados\Projeto SALAH\Projeto Banco Dados\Programa\Projeto Banco Dados\bin\MySql.Data.dll
+C:\Users\alexa\Desktop\Banco de dados\Projeto SALAH\Projeto Banco Dados\Programa\Projeto Banco Dados\bin\Google.Protobuf.dll
+C:\Users\alexa\Desktop\Banco de dados\Projeto SALAH\Projeto Banco Dados\Programa\Projeto Banco Dados\bin\BouncyCastle.Crypto.dll
+C:\Users\alexa\Desktop\Banco de dados\Projeto SALAH\Projeto Banco Dados\Programa\Projeto Banco Dados\bin\MySql.Data.xml

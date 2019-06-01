@@ -14,17 +14,19 @@
     abaixo um exemplo de como chamar um metodo usando razor
     -->
 <!--exemplo de formulario -->
-@using (Html.BeginForm("Insert_Mongo", "Home", FormMethod.Post))
-{
-    <div class="form-group">
-        <input type="submit" value="Adicionar" class="btn btn-primary" />
-    </div>
+<div>
+    @using (Html.BeginForm("Select_Mongo", "Home", FormMethod.Post))
+    {
+        <div class="form-group">
+            <input type="submit" value="Select mongo" class="btn btn-primary" />
+        </div>
 
-}
-@using (Html.BeginForm("Select_Mongo1", "Home", FormMethod.Post))
-{
-    <div class="form-group">
-        <input type="submit" value="Selecionar" class="btn btn-primary" />
-    </div>
+    }
+    @using (Html.BeginForm("Select_MySQL", "Home", FormMethod.Post))
+    {
+        <div class="form-group">
+            <input type="submit" value="Select MySQL" class="btn btn-primary" />
+        </div>
 
-}
+    }
+</div>

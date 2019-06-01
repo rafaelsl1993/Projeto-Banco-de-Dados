@@ -88,13 +88,13 @@ namespace Projeto_Banco_Dados.Repository
                 return null;
             }
         }
-        public List<Vendas> Select()
+       /* public List<Vendas> Select()
         {
             var colecao = this.InstanciarConexao();
             var colecao2 = this.InstanciarConexaoCliente(); 
            
 
             return lista;
-        }
+        }*/
     }
 }
